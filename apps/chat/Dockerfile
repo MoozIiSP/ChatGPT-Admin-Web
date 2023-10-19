@@ -31,7 +31,7 @@ COPY --from=builder /app/out/pnpm-lock.yaml ./pnpm-lock.yaml
 RUN pnpm install
 
 # Build the project
-COPY ./config.yaml /app/config.yaml
+COPY ../../config.example.yaml /app/config.yaml
 COPY --from=builder /app/out/full/ .
 RUN pnpx turbo run db:generate \
     & pnpx turbo run build --filter=chat...
